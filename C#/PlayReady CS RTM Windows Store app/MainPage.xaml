@@ -22,6 +22,7 @@
         <Button Content="DomainJoin" HorizontalAlignment="Left" Margin="420,22,0,0" VerticalAlignment="Top" Name="btnDomainJoin" Click="btnDomainJoin_Click" Height="45" Width="150" />
         <Button Content="DomainLeave" HorizontalAlignment="Left" Margin="580,22,0,0" VerticalAlignment="Top" Name="btnDomainLeave" Click="btnDomainLeave_Click" Height="45" Width="150" />
         <Button Content="Proactive LA" HorizontalAlignment="Left" Margin="740,22,0,0" VerticalAlignment="Top" Name="btnProactiveLA" Click="btnProactiveLA_Click" Height="45" Width="150" />
+        <Button Content="Play Local" HorizontalAlignment="Left" Margin="900,22,0,0" VerticalAlignment="Top" Name="btnPlayLocal" Click="btnPlayLocal_Click" Height="45" Width="150" />
         <MediaElement Name="myME" HorizontalAlignment="Left" Height="433" Margin="100,81,0,0" VerticalAlignment="Top" Width="873"/>
         <TextBox FontFamily="Consolas" HorizontalAlignment="Left" TextWrapping="Wrap" Name="txtMessages" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="100,519,0,0" Height="239" Width="873"/>
     </Grid>

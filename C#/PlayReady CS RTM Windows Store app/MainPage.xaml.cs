@@ -11,6 +11,9 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -41,7 +44,7 @@ namespace PlayReady_CS_RTM_Windows_Store_app
     {
 
         //Global Variables
-        static public string g_LAURL = "http://playready.directtaps.net/win/rightsmanager.asmx";
+        static public string g_LAURL = "http://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&FirstPlayExpiration=60";
         static public string g_pyvURL = "http://playready.directtaps.net/win/media/TallShip_with_Credits_folk_rock_soundtrack_encrypted.wmv";
         static public string g_ismURL = "http://playready.directtaps.net/smoothstreaming/SSWSS720H264PR/SuperSpeedway_720.ism/Manifest";
 
@@ -71,6 +74,8 @@ namespace PlayReady_CS_RTM_Windows_Store_app
             //This can be removed if you don't play pyv/pya content 
             extensions.RegisterByteStreamHandler("Microsoft.Media.PlayReadyClient.PlayReadyByteStreamHandler", ".pyv", "");
             extensions.RegisterByteStreamHandler("Microsoft.Media.PlayReadyClient.PlayReadyByteStreamHandler", ".pya", "");
+
+            
         }
 
         private void log(string msg) { TestLogger.LogMessage(msg); }
@@ -124,7 +129,8 @@ namespace PlayReady_CS_RTM_Windows_Store_app
         {
             ServiceRequestConfigData requestConfigData = new ServiceRequestConfigData();
 
-            requestConfigData.KeyIdString = "7987aj+eE0uBlXi0N73AQw==";
+            //requestConfigData.KeyIdString = "7987aj+eE0uBlXi0N73AQw==";
+            requestConfigData.KeyIdString = "GJsTKYmLVE+hXhYQKSqXAQ=="; // Use the same content id as the actual encoded tall ships video
             requestConfigData.EncryptionAlgorithm = PlayReadyEncryptionAlgorithm.Aes128Ctr;
             requestConfigData.Uri = new Uri("http://playready.directtaps.net/pr/svc/rightsmanager.asmx");
             requestConfigData.DomainServiceId = new Guid("{DEB47F00-8A3B-416D-9B1E-5D55FD023044}");
@@ -132,6 +138,25 @@ namespace PlayReady_CS_RTM_Windows_Store_app
             LicenseAcquisition licenseAcquisition = new LicenseAcquisition();
             licenseAcquisition.RequestConfigData = requestConfigData;
             licenseAcquisition.AcquireLicenseProactively();
+        }
+
+        private async void btnPlayLocal_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new FileOpenPicker();
+            picker.FileTypeFilter.Add(".wmv");
+            var file = await picker.PickSingleFileAsync();
+            if (file == null)
+            {
+                return;
+            }
+            
+            IRandomAccessStream ras = await file.OpenAsync(FileAccessMode.Read);
+            //myME.SetSource(ras, file.ContentType);
+            
+            playMedia = new Playback();
+            playMedia.Play(myME, ras, file.ContentType);
+            
+            
         }
     }
 

@@ -6,6 +6,7 @@
 //// Copyright (c) Microsoft Corporation. All rights reserved
 
 using System;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -75,10 +76,26 @@ namespace PlayReady_CS_RTM_Windows_Store_app
             _strMediaPath = strMediaPath;
 
             SetupProtectionManager();
+            
             HookEventHandlers();
             _mediaElement.Source = new Uri( _strMediaPath );
             
             TestLogger.LogMessage("Leave Playback.Play()" );
+        }
+
+        public void Play(MediaElement mediaElement, IRandomAccessStream stream, string contentType)
+        {
+            TestLogger.LogMessage("Enter Playback.Play()");
+
+            _mediaElement = mediaElement;
+            
+            SetupProtectionManager();
+
+            HookEventHandlers();
+
+            _mediaElement.SetSource(stream, contentType);
+
+            TestLogger.LogMessage("Leave Playback.Play()");
         }
 
         protected void CurrentStateChanged( object sender, RoutedEventArgs e )
