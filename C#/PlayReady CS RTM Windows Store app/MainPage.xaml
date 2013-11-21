@@ -1,0 +1,28 @@
+﻿<!--
+    //// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+    //// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+    //// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+    //// PARTICULAR PURPOSE.
+    ////
+    //// Copyright (c) Microsoft Corporation. All rights reserved
+    -->
+    
+    <Page
+    x:Class="PlayReady_CS_RTM_Windows_Store_app.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PlayReady_CS_RTM_Windows_Store_app"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="Play PYV" HorizontalAlignment="Left" Margin="100,22,0,0" VerticalAlignment="Top" Name="btnPlayPyv" Click="btnPlayPyv_Click" Height="45" Width="150"/>
+        <Button Content="Play ISM" HorizontalAlignment="Left" Margin="260,22,0,0" VerticalAlignment="Top" Name="btnPlayISM" Click="btnPlayISM_Click" Height="45" Width="150"/>
+        <Button Content="DomainJoin" HorizontalAlignment="Left" Margin="420,22,0,0" VerticalAlignment="Top" Name="btnDomainJoin" Click="btnDomainJoin_Click" Height="45" Width="150" />
+        <Button Content="DomainLeave" HorizontalAlignment="Left" Margin="580,22,0,0" VerticalAlignment="Top" Name="btnDomainLeave" Click="btnDomainLeave_Click" Height="45" Width="150" />
+        <Button Content="Proactive LA" HorizontalAlignment="Left" Margin="740,22,0,0" VerticalAlignment="Top" Name="btnProactiveLA" Click="btnProactiveLA_Click" Height="45" Width="150" />
+        <MediaElement Name="myME" HorizontalAlignment="Left" Height="433" Margin="100,81,0,0" VerticalAlignment="Top" Width="873"/>
+        <TextBox FontFamily="Consolas" HorizontalAlignment="Left" TextWrapping="Wrap" Name="txtMessages" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="100,519,0,0" Height="239" Width="873"/>
+    </Grid>
+</Page>
